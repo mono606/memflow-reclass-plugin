@@ -41,12 +41,13 @@ pub struct Settings {
 }
 
 impl Settings {
-    /// Loads the current config from the {PWD}/Plugins/memflow.toml file.
+    /// Loads the current config from the ~/.config/memflow/reclass.toml file.
     pub fn new() -> Self {
         // load config file
-        let pwd = std::env::current_dir().expect("unable to get pwd");
+        let home_dir = home::home_dir().expect("unable to get home dir");
+        let memflow_config_dir = home_dir.join(".config").join("memflow");
         let config = if let Ok(configstr) =
-            std::fs::read_to_string(pwd.join("Plugins").join("memflow.toml"))
+            std::fs::read_to_string(memflow_config_dir.join("reclass.toml"))
         {
             toml::from_str::<Config>(&configstr).unwrap_or_default()
         } else {
@@ -56,16 +57,15 @@ impl Settings {
         Self { config }
     }
 
-    /// Saves the current configuration to the {PWD}/Plugins/memflow.toml file.
+    /// Saves the current configuration to the ~/.config/memflow/reclass.toml file.
     pub fn persist(&self) -> Result<()> {
-        let pwd = std::env::current_dir().map_err(|_| {
-            Error(ErrorOrigin::Other, ErrorKind::Unknown).log_error("unable to get pwd")
-        })?;
+        let home_dir = home::home_dir().expect("unable to get home dir");
+        let memflow_config_dir = home_dir.join(".config").join("memflow");
         let configstr = toml::to_string_pretty(&self.config).map_err(|_| {
             Error(ErrorOrigin::Other, ErrorKind::Configuration)
                 .log_error("unable to serialize config")
         })?;
-        std::fs::write(pwd.join("Plugins").join("memflow.toml"), configstr).map_err(|_| {
+        std::fs::write(memflow_config_dir.join("reclass.toml"), configstr).map_err(|_| {
             Error(ErrorOrigin::Other, ErrorKind::NotFound).log_error("unable to write config file")
         })?;
         Ok(())

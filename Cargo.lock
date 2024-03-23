@@ -501,7 +501,7 @@ dependencies = [
 
 [[package]]
 name = "memflow-reclass-plugin"
-version = "0.2.0-beta10"
+version = "0.2.0-beta11"
 dependencies = [
  "log",
  "memflow",

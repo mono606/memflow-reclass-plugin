@@ -1,7 +1,4 @@
-use crate::gui::{
-    alert,
-    settings::{Config, Settings},
-};
+use crate::gui::settings::{Config, Settings};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex, MutexGuard};
 
@@ -18,11 +15,6 @@ pub unsafe fn lock_memflow<'a>() -> Result<MutexGuard<'a, Memflow>> {
                 MEMFLOW_INSTANCE = Some(Arc::new(Mutex::new(memflow)));
             }
             Err(err) => {
-                alert::show_error(
-                    "Unable to load memflow",
-                    "Memflow failed to initialize some of its components",
-                    err,
-                );
                 return Err(err.log_error("unable to initialize memflow"));
             }
         };
@@ -61,11 +53,7 @@ impl Memflow {
         // show configuration dialog
         settings.configure();
         if let Err(err) = settings.persist() {
-            alert::show_error(
-                "Unable to save settings",
-                "The configuration file could not be written",
-                err,
-            );
+            err.log_error("The configuration file could not be written");
         }
         let config = settings.config();
 

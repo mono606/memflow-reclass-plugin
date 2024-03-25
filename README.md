@@ -21,7 +21,7 @@ The plugin as well as the `memflow.toml` file have to be put in the ReClass `/Pl
 After the plugin has been copied to the `./Plugins` folder in ReClass it can be selected as a plugin inside of ReClass.
 The plugin will search for the configuration file in `~/.config/memflow/reclass.toml`
 
-Make sure you start [ReClass.NET](https://github.com/ReClassNET/ReClass.NET) with the appropiate access rights (e.g. SYS_PTRACE) for the connector you intend to use.
+Make sure the `mono` binary usually locate at `/usr/bin/mono` contains the appropiate access rights (e.g. SYS_PTRACE) for the connector you intend to use.
 
 More information on access rights can be found in the [memflow repository](https://github.com/memflow/memflow) or in the specific connector repository.
 

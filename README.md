@@ -14,8 +14,6 @@ cargo build --release
 
 The resulting plugin can be found under `./target/release/libmemflow_reclass.so` (or dll on windows).
 
-**The plugin as well as the `memflow.toml` file have to be put in the ReClass `/Plugins` folders.**
-
 ## Usage
 
 After the plugin has been copied to the `./Plugins` folder in ReClass it can be selected as a plugin inside of ReClass.
@@ -26,12 +24,17 @@ More information on access rights can be found in the [memflow repository](https
 
 ## Configuration
 
-The configuration file offers the following settings:
-- `connector` - the name of the connector to use
-- `args` - the argument string passed to the connector, optional
-- `parse_sections` - will load section information of the process
+The `memflow.toml` file is used to configure the plugin and configure the memflow connector that should be used. The file has the following format:
+```toml
+connector = "kvm" # the name of the connector to use
+args = "" # the argument string passed to the connector, optional
+log_level = "info" # changes the memflow logging level, optional
+parse_sections = true # will load section information of the process
+```
 
 Depending on the Connector you use it might be useful to disable section parsing as this slow down the ReClass UI.
+
+**The plugin as well as the `memflow.toml` file have to be put in the ReClass `/Plugins` folders.**
 
 ## Remarks
 

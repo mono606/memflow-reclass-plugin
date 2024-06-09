@@ -1,3 +1,4 @@
-connector = "qemu_procfs"
+connector = "kvm"
 args = ""
+log_level = "info"
 parse_sections = true

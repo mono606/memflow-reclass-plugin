@@ -14,7 +14,7 @@ cargo build --release
 
 The resulting plugin can be found under `./target/release/libmemflow_reclass.so` (or dll on windows).
 
-The plugin as well as the `memflow.toml` file have to be put in the ReClass `/Plugins` folders.
+**The plugin as well as the `memflow.toml` file have to be put in the ReClass `/Plugins` folders.**
 
 ## Usage
 

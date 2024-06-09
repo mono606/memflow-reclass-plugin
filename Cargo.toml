@@ -1,6 +1,6 @@
 [package]
 name = "memflow-reclass-plugin"
-version = "0.2.0-beta10"
+version = "0.2.1"
 authors = ["ko1N <ko1N1337@gmail.com>"]
 edition = "2018"
 description = "ReClass.NET plugin for the memflow physical memory introspection framework"
@@ -20,7 +20,7 @@ crate-type = ["cdylib"]
 [package.metadata.winres]
 FileDescription = "memflow"
 ProductName = "ReClass.NET Native Plugin"
-ProductVersion = "0.1.1"
+ProductVersion = "0.2.1"
 OriginalFilename = "memflow_reclass.dll"
 LegalCopyright = "Copyright © 2020-2021"
 Comments = "The memflow ReClass.NET connects to a Process running on a memflow target. See https://github.com/memflow/memflow for more about memflow."
@@ -29,9 +29,9 @@ CompanyName = "ko1N, h33p"
 [dependencies]
 log = "0.4.8"
 simple-logging = "2.0.2"
-memflow = { version = "=0.2.0-beta10", features = ["plugins"] }
+memflow = { version = "0.2", features = ["plugins"] }
 serde = { version = "1.0", features = ["derive"] }
-toml = "0.7"
+toml = "0.8"
 
 [target.'cfg(windows)'.build-dependencies]
 winres = "0.1"

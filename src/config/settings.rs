@@ -45,11 +45,11 @@ impl Settings {
     pub fn new() -> Self {
         // load config file
         let pwd = std::env::current_dir().expect("unable to get pwd");
-        let config = if let Ok(configstr) =
-            std::fs::read_to_string(pwd.join("Plugins").join("memflow.toml"))
-        {
+        let memflow_config_path = pwd.join("Plugins").join("memflow.toml");
+        let config = if let Ok(configstr) = std::fs::read_to_string(memflow_config_path.clone()) {
             toml::from_str::<Config>(&configstr).unwrap_or_default()
         } else {
+            log::warn!("no config file found at {:?}", memflow_config_path);
             Config::default()
         };
 

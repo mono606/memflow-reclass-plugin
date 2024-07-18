@@ -19,6 +19,7 @@ The resulting plugin can be found under `./target/release/libmemflow_reclass.so`
 After the plugin has been copied to the `./Plugins` folder in ReClass it can be selected as a plugin inside of ReClass.
 
 Make sure you start [ReClass.NET](https://github.com/ReClassNET/ReClass.NET) with the appropiate access rights (e.g. SYS_PTRACE) for the connector you intend to use.
+**Note: Since ReClass.NET is a mono application the `mono` binary will need to have the SYS_PTRACE access rights!**
 
 More information on access rights can be found in the [memflow repository](https://github.com/memflow/memflow) or in the specific connector repository.
 
@@ -34,7 +35,7 @@ parse_sections = true # will load section information of the process
 
 Depending on the Connector you use it might be useful to disable section parsing as this slow down the ReClass UI.
 
-**The plugin as well as the `memflow.toml` file have to be put in the ReClass `/Plugins` folders.**
+The plugin will try to read the config file from the current workdir + `/Plugins/`.
 
 ## Remarks
 
